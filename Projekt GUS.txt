@@ -1,0 +1,574 @@
+#Wykorzystywane biblioteki
+
+library(xlsx)
+library(tidyverse)
+
+#Wczytujemy dane z pliku excel - wcześniej już zostały przejrzane i w pewien sposób uporządkowane
+
+dane <- read.xlsx('Ceny 2006 - 2019.xlsx', sheetIndex = 1)
+
+#Opisanie bardziej przejrzystych nazw kolumny dla kazdego roku
+
+#Rok 2006
+names(dane)[1]<-paste0("Region")
+names(dane)[2:7]<-paste0("2006; Styczeń; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[8:13]<-paste0("2006; Luty; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[14:19]<-paste0("2006; Marzec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[20:25]<-paste0("2006; Kwiecień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[26:31]<-paste0("2006; Maj; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[32:37]<-paste0("2006; Czerwiec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[38:43]<-paste0("2006; Lipiec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[44:49]<-paste0("2006; Sierpień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[50:55]<-paste0("2006; Wrzesień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[56:61]<-paste0("2006; Paźdzernik; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[62:67]<-paste0("2006; Listopad; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[68:73]<-paste0("2006; Grudzień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+#Rok 2007
+names(dane)[74:79]<-paste0("2007; Styczeń; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                            "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                            "Ciepła woda za metr sześcienny"))
+names(dane)[80:85]<-paste0("2007; Luty; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[86:91]<-paste0("2007; Marzec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                             "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Ciepła woda za metr sześcienny"))
+names(dane)[92:97]<-paste0("2007; Kwiecień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[98:103]<-paste0("2007; Maj; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[104:109]<-paste0("2007; Czerwiec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[110:115]<-paste0("2007; Lipiec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                             "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Ciepła woda za metr sześcienny"))
+names(dane)[116:121]<-paste0("2007; Sierpień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[122:127]<-paste0("2007; Wrzesień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[128:133]<-paste0("2007; Paźdzernik; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                                 "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Ciepła woda za metr sześcienny"))
+names(dane)[134:139]<-paste0("2007; Listopad; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[140:145]<-paste0("2007; Grudzień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+#Rok 2008
+names(dane)[146:151]<-paste0("2008; Styczeń; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                            "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                            "Ciepła woda za metr sześcienny"))
+names(dane)[152:157]<-paste0("2008; Luty; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[158:163]<-paste0("2008; Marzec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                             "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Ciepła woda za metr sześcienny"))
+names(dane)[164:169]<-paste0("2008; Kwiecień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[170:175]<-paste0("2008; Maj; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[176:181]<-paste0("2008; Czerwiec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[182:187]<-paste0("2008; Lipiec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                             "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Ciepła woda za metr sześcienny"))
+names(dane)[188:193]<-paste0("2008; Sierpień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[194:199]<-paste0("2008; Wrzesień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[200:205]<-paste0("2008; Paźdzernik; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                                 "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Ciepła woda za metr sześcienny"))
+names(dane)[206:211]<-paste0("2008; Listopad; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[212:217]<-paste0("2008; Grudzień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+#Rok 2009
+names(dane)[218:223]<-paste0("2009; Styczeń; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                            "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                            "Ciepła woda za metr sześcienny"))
+names(dane)[224:229]<-paste0("2009; Luty; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[230:235]<-paste0("2009; Marzec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                             "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Ciepła woda za metr sześcienny"))
+names(dane)[236:241]<-paste0("2009; Kwiecień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[242:247]<-paste0("2009; Maj; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[248:253]<-paste0("2009; Czerwiec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[254:259]<-paste0("2009; Lipiec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                             "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Ciepła woda za metr sześcienny"))
+names(dane)[260:265]<-paste0("2009; Sierpień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[266:271]<-paste0("2009; Wrzesień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[272:277]<-paste0("2009; Paźdzernik; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                                 "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Ciepła woda za metr sześcienny"))
+names(dane)[278:283]<-paste0("2009; Listopad; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[284:289]<-paste0("2009; Grudzień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+#Rok 2010
+names(dane)[290:295]<-paste0("2010; Styczeń; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                            "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                            "Ciepła woda za metr sześcienny"))
+names(dane)[296:301]<-paste0("2010; Luty; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[302:307]<-paste0("2010; Marzec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                             "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Ciepła woda za metr sześcienny"))
+names(dane)[308:313]<-paste0("2010; Kwiecień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[314:319]<-paste0("2010; Maj; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[320:325]<-paste0("2010; Czerwiec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[326:331]<-paste0("2010; Lipiec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                             "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Ciepła woda za metr sześcienny"))
+names(dane)[332:337]<-paste0("2010; Sierpień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[338:343]<-paste0("2010; Wrzesień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[344:349]<-paste0("2010; Paźdzernik; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                                 "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Ciepła woda za metr sześcienny"))
+names(dane)[350:355]<-paste0("2010; Listopad; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[356:361]<-paste0("2010; Grudzień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+#Rok 2011
+names(dane)[362:367]<-paste0("2011; Styczeń; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                            "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                            "Ciepła woda za metr sześcienny"))
+names(dane)[368:373]<-paste0("2011; Luty; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[374:379]<-paste0("2011; Marzec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                             "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Ciepła woda za metr sześcienny"))
+names(dane)[380:385]<-paste0("2011; Kwiecień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[386:391]<-paste0("2011; Maj; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                          "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Ciepła woda za metr sześcienny"))
+names(dane)[392:397]<-paste0("2011; Czerwiec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[398:403]<-paste0("2011; Lipiec; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                             "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Ciepła woda za metr sześcienny"))
+names(dane)[404:409]<-paste0("2011; Sierpień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[410:415]<-paste0("2011; Wrzesień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[416:421]<-paste0("2011; Paźdzernik; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                                 "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Ciepła woda za metr sześcienny"))
+names(dane)[422:427]<-paste0("2011; Listopad; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+names(dane)[428:433]<-paste0("2011; Grudzień; ",c("Ryż","Bułka pszenna","Kawa naturalna mielona",
+                                               "Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Ciepła woda za metr sześcienny"))
+#Rok 2012
+names(dane)[434:441]<-paste0("2012; Styczeń; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                            "Rejstopy damskie - 15 den","Półbuty męskie skórzane",
+                                            "Podzelowanie obuwia meskiego","Ciepła woda za metr sześcienny"))
+names(dane)[442:449]<-paste0("2012; Luty; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                           "Rejstopy damskie - 15 den","Półbuty męskie skórzane",
+                                           "Podzelowanie obuwia meskiego","Ciepła woda za metr sześcienny"))
+names(dane)[450:457]<-paste0("2012; Marzec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane",
+                                             "Podzelowanie obuwia meskiego","Ciepła woda za metr sześcienny"))
+names(dane)[458:465]<-paste0("2012; Kwiecień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane",
+                                               "Podzelowanie obuwia meskiego","Ciepła woda za metr sześcienny"))
+names(dane)[466:473]<-paste0("2012; Maj; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                          "Rejstopy damskie - 15 den","Półbuty męskie skórzane",
+                                          "Podzelowanie obuwia meskiego","Ciepła woda za metr sześcienny"))
+names(dane)[474:481]<-paste0("2012; Czerwiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane",
+                                               "Podzelowanie obuwia meskiego","Ciepła woda za metr sześcienny"))
+names(dane)[482:489]<-paste0("2012; Lipiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                              "Rejstopy damskie - 15 den","Półbuty męskie skórzane",
+                                              "Podzelowanie obuwia meskiego","Ciepła woda za metr sześcienny"))
+names(dane)[490:497]<-paste0("2012; Sierpień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane",
+                                               "Podzelowanie obuwia meskiego","Ciepła woda za metr sześcienny"))
+names(dane)[498:505]<-paste0("2012; Wrzesień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane",
+                                               "Podzelowanie obuwia meskiego","Ciepła woda za metr sześcienny"))
+names(dane)[506:513]<-paste0("2012; Paźdzernik; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane",
+                                                 "Podzelowanie obuwia meskiego","Ciepła woda za metr sześcienny"))
+names(dane)[514:521]<-paste0("2012; Listopad; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane",
+                                               "Podzelowanie obuwia meskiego","Ciepła woda za metr sześcienny"))
+names(dane)[522:529]<-paste0("2012; Grudzień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane",
+                                               "Podzelowanie obuwia meskiego","Ciepła woda za metr sześcienny"))
+#Rok 2013
+names(dane)[530:538]<-paste0("2013; Styczeń; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                            "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[539:547]<-paste0("2013; Luty; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                           "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                           "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[548:556]<-paste0("2013; Marzec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[557:565]<-paste0("2013; Kwiecień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[566:574]<-paste0("2013; Maj; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                          "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[575:583]<-paste0("2013; Czerwiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[584:592]<-paste0("2013; Lipiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[593:601]<-paste0("2013; Sierpień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[602:610]<-paste0("2013; Wrzesień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[611:619]<-paste0("2013; Paźdzernik; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[620:628]<-paste0("2013; Listopad; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[629:637]<-paste0("2013; Grudzień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+#Rok 2014
+names(dane)[638:646]<-paste0("2014; Styczeń; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[647:655]<-paste0("2014; Luty; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                           "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                           "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[656:664]<-paste0("2014; Marzec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[665:673]<-paste0("2014; Kwiecień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[674:682]<-paste0("2014; Maj; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                          "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[683:691]<-paste0("2014; Czerwiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[692:700]<-paste0("2014; Lipiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[701:709]<-paste0("2014; Sierpień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[710:718]<-paste0("2014; Wrzesień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[719:727]<-paste0("2014; Paźdzernik; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[728:736]<-paste0("2014; Listopad; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[737:745]<-paste0("2014; Grudzień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+#Rok 2015
+names(dane)[746:754]<-paste0("2015; Styczeń; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[755:763]<-paste0("2015; Luty; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                           "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                           "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[764:772]<-paste0("2015; Marzec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[773:781]<-paste0("2015; Kwiecień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[782:790]<-paste0("2015; Maj; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                          "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[791:799]<-paste0("2015; Czerwiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[800:808]<-paste0("2015; Lipiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[809:817]<-paste0("2015; Sierpień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[818:826]<-paste0("2015; Wrzesień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[827:835]<-paste0("2015; Paźdzernik; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[836:844]<-paste0("2015; Listopad; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[845:853]<-paste0("2015; Grudzień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+#Rok 2016
+names(dane)[854:862]<-paste0("2016; Styczeń; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[863:871]<-paste0("2016; Luty; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                           "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                           "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[872:880]<-paste0("2016; Marzec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[881:889]<-paste0("2016; Kwiecień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[890:898]<-paste0("2016; Maj; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                          "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[899:907]<-paste0("2016; Czerwiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[908:916]<-paste0("2016; Lipiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[917:925]<-paste0("2016; Sierpień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[926:934]<-paste0("2016; Wrzesień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[935:943]<-paste0("2016; Paźdzernik; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[944:952]<-paste0("2016; Listopad; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[953:961]<-paste0("2016; Grudzień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+#Rok 2017
+names(dane)[962:970]<-paste0("2017; Styczeń; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[971:979]<-paste0("2017; Luty; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                           "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                           "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[980:988]<-paste0("2017; Marzec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[989:997]<-paste0("2017; Kwiecień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[998:1006]<-paste0("2017; Maj; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                          "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1007:1015]<-paste0("2017; Czerwiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1016:1024]<-paste0("2017; Lipiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1025:1033]<-paste0("2017; Sierpień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1034:1042]<-paste0("2017; Wrzesień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1043:1051]<-paste0("2017; Paźdzernik; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1052:1060]<-paste0("2017; Listopad; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1061:1069]<-paste0("2017; Grudzień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+#Rok 2018
+names(dane)[1070:1078]<-paste0("2018; Styczeń; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1079:1087]<-paste0("2018; Luty; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                           "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                           "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1088:1096]<-paste0("2018; Marzec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1097:1105]<-paste0("2018; Kwiecień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1106:1114]<-paste0("2018; Maj; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                          "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                          "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1115:1123]<-paste0("2018; Czerwiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1124:1132]<-paste0("2018; Lipiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1133:1141]<-paste0("2018; Sierpień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1142:1150]<-paste0("2018; Wrzesień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1151:1159]<-paste0("2018; Paźdzernik; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1160:1168]<-paste0("2018; Listopad; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1169:1177]<-paste0("2018; Grudzień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+#Rok 2019
+names(dane)[1178:1187]<-paste0("2019; Styczeń; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona","Jaja kurze (wolny wybieg)",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1188:1197]<-paste0("2019; Luty; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona","Jaja kurze (wolny wybieg)",
+                                           "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                           "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1198:1207]<-paste0("2019; Marzec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona","Jaja kurze (wolny wybieg)",
+                                             "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                             "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1208:1217]<-paste0("2019; Kwiecień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona","Jaja kurze (wolny wybieg)",
+                                              "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                              "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1218:1227]<-paste0("2019; Maj; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona","Jaja kurze (wolny wybieg)",
+                                         "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                         "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1228:1237]<-paste0("2019; Czerwiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona","Jaja kurze (wolny wybieg)",
+                                              "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                              "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1238:1247]<-paste0("2019; Lipiec; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona","Jaja kurze (wolny wybieg)",
+                                              "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                              "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1248:1257]<-paste0("2019; Sierpień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona","Jaja kurze (wolny wybieg)",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1258:1267]<-paste0("2019; Wrzesień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona","Jaja kurze (wolny wybieg)",
+                                               "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                               "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1268:1277]<-paste0("2019; Paźdzernik; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona","Jaja kurze (wolny wybieg)",
+                                                  "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                  "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1278:1287]<-paste0("2019; Listopad; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona","Jaja kurze (wolny wybieg)",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+names(dane)[1288:1297]<-paste0("2019; Grudzień; ",c("Ryż","Bułka pszenna","Śmietana 18%","Kawa naturalna mielona","Jaja kurze (wolny wybieg)",
+                                                 "Rejstopy damskie - 15 den","Półbuty męskie skórzane","Podzelowanie obuwia meskiego",
+                                                 "Centralne ogrzewanie lok. mieszk. za metr kw.","Ciepła woda za metr sześcienny"))
+
+
+
+#Utworzenie tabel dla poszczególnych produktów
+
+ryz <-select(dane, c("2006; Styczeń; Ryż","2006; Luty; Ryż","2006; Marzec; Ryż","2006; Kwiecień; Ryż","2006; Maj; Ryż","2006; Czerwiec; Ryż",
+                     "2006; Lipiec; Ryż","2006; Wrzesień; Ryż","2006; Paźdzernik; Ryż","2006; Listopad; Ryż","2006; Grudzień; Ryż",
+                     "2007; Styczeń; Ryż","2007; Luty; Ryż","2007; Marzec; Ryż","2007; Kwiecień; Ryż","2007; Maj; Ryż","2007; Czerwiec; Ryż",
+                     "2007; Lipiec; Ryż","2007; Wrzesień; Ryż","2007; Paźdzernik; Ryż","2007; Listopad; Ryż","2007; Grudzień; Ryż",
+                     "2008; Styczeń; Ryż","2008; Luty; Ryż","2008; Marzec; Ryż","2008; Kwiecień; Ryż","2008; Maj; Ryż","2008; Czerwiec; Ryż",
+                     "2008; Lipiec; Ryż","2008; Wrzesień; Ryż","2008; Paźdzernik; Ryż","2008; Listopad; Ryż","2008; Grudzień; Ryż",
+                     "2009; Styczeń; Ryż","2009; Luty; Ryż","2009; Marzec; Ryż","2009; Kwiecień; Ryż","2009; Maj; Ryż","2009; Czerwiec; Ryż",
+                     "2009; Lipiec; Ryż","2009; Wrzesień; Ryż","2009; Paźdzernik; Ryż","2009; Listopad; Ryż","2009; Grudzień; Ryż",
+                     "2010; Styczeń; Ryż","2010; Luty; Ryż","2010; Marzec; Ryż","2010; Kwiecień; Ryż","2010; Maj; Ryż","2010; Czerwiec; Ryż",
+                     "2010; Lipiec; Ryż","2010; Wrzesień; Ryż","2010; Paźdzernik; Ryż","2010; Listopad; Ryż","2010; Grudzień; Ryż",
+                     "2011; Styczeń; Ryż","2011; Luty; Ryż","2011; Marzec; Ryż","2011; Kwiecień; Ryż","2011; Maj; Ryż","2011; Czerwiec; Ryż",
+                     "2011; Lipiec; Ryż","2011; Wrzesień; Ryż","2011; Paźdzernik; Ryż","2011; Listopad; Ryż","2011; Grudzień; Ryż",
+                     "2012; Styczeń; Ryż","2012; Luty; Ryż","2012; Marzec; Ryż","2012; Kwiecień; Ryż","2012; Maj; Ryż","2012; Czerwiec; Ryż",
+                     "2012; Lipiec; Ryż","2012; Wrzesień; Ryż","2012; Paźdzernik; Ryż","2012; Listopad; Ryż","2012; Grudzień; Ryż",
+                     "2013; Styczeń; Ryż","2013; Luty; Ryż","2013; Marzec; Ryż","2013; Kwiecień; Ryż","2013; Maj; Ryż","2013; Czerwiec; Ryż",
+                     "2013; Lipiec; Ryż","2013; Wrzesień; Ryż","2013; Paźdzernik; Ryż","2013; Listopad; Ryż","2013; Grudzień; Ryż",
+                     "2014; Styczeń; Ryż","2014; Luty; Ryż","2014; Marzec; Ryż","2014; Kwiecień; Ryż","2014; Maj; Ryż","2014; Czerwiec; Ryż",
+                     "2014; Lipiec; Ryż","2014; Wrzesień; Ryż","2014; Paźdzernik; Ryż","2014; Listopad; Ryż","2014; Grudzień; Ryż",
+                     "2015; Styczeń; Ryż","2015; Luty; Ryż","2015; Marzec; Ryż","2015; Kwiecień; Ryż","2015; Maj; Ryż","2015; Czerwiec; Ryż",
+                     "2015; Lipiec; Ryż","2015; Wrzesień; Ryż","2015; Paźdzernik; Ryż","2015; Listopad; Ryż","2015; Grudzień; Ryż",
+                     "2016; Styczeń; Ryż","2016; Luty; Ryż","2016; Marzec; Ryż","2016; Kwiecień; Ryż","2016; Maj; Ryż","2016; Czerwiec; Ryż",
+                     "2016; Lipiec; Ryż","2016; Wrzesień; Ryż","2016; Paźdzernik; Ryż","2016; Listopad; Ryż","2016; Grudzień; Ryż",
+                     "2017; Styczeń; Ryż","2017; Luty; Ryż","2017; Marzec; Ryż","2017; Kwiecień; Ryż","2017; Maj; Ryż","2017; Czerwiec; Ryż",
+                     "2017; Lipiec; Ryż","2017; Wrzesień; Ryż","2017; Paźdzernik; Ryż","2017; Listopad; Ryż","2017; Grudzień; Ryż",
+                     "2018; Styczeń; Ryż","2018; Luty; Ryż","2018; Marzec; Ryż","2018; Kwiecień; Ryż","2018; Maj; Ryż","2018; Czerwiec; Ryż",
+                     "2018; Lipiec; Ryż","2018; Wrzesień; Ryż","2018; Paźdzernik; Ryż","2018; Listopad; Ryż","2018; Grudzień; Ryż",
+                     "2019; Styczeń; Ryż","2019; Luty; Ryż","2019; Marzec; Ryż","2019; Kwiecień; Ryż","2019; Maj; Ryż","2019; Czerwiec; Ryż",
+                     "2019; Lipiec; Ryż","2019; Wrzesień; Ryż","2019; Paźdzernik; Ryż","2019; Listopad; Ryż","2019; Grudzień; Ryż"))
+
+#Tworzymy ramkę dany odwrotną do podanej
+
+dim(ryz)
+
+
+#Tworzymy szeregi dynamiczne (czasowe)
+
+
+ryz_polska = ts(ryz[1,], start = c(2006, 01), frequency = 12)
+plot(ryz[1:12])
